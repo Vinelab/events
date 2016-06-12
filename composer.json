@@ -1,5 +1,5 @@
 {
-    "name": "illuminate/events",
+    "name": "vinelab/neoeloquent-events",
     "description": "The Illuminate Events package.",
     "license": "MIT",
     "homepage": "http://laravel.com",
@@ -11,22 +11,26 @@
         {
             "name": "Taylor Otwell",
             "email": "taylorotwell@gmail.com"
+        },
+        {
+          "name": "Abed Halawi",
+          "email": "abed.halawi@vinelab.com"
         }
     ],
     "require": {
-        "php": ">=5.6.4",
-        "illuminate/container": "5.4.*",
-        "illuminate/contracts": "5.4.*",
-        "illuminate/support": "5.4.*"
+        "php": ">=5.5.9",
+        "vinelab/neoeloquent-container": "5.2.*",
+        "vinelab/neoeloquent-contracts": "5.2.*",
+        "vinelab/neoeloquent-support": "5.2.*"
     },
     "autoload": {
         "psr-4": {
-            "Illuminate\\Events\\": ""
+            "Vinelab\\NeoEloquent\\Events\\": ""
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "5.4-dev"
+            "dev-master": "5.2-dev"
         }
     },
     "minimum-stability": "dev"

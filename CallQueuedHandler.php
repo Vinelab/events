@@ -1,23 +1,23 @@
 <?php
 
-namespace Illuminate\Events;
+namespace Vinelab\NeoEloquent\Events;
 
-use Illuminate\Contracts\Queue\Job;
-use Illuminate\Contracts\Container\Container;
+use Vinelab\NeoEloquent\Contracts\Queue\Job;
+use Vinelab\NeoEloquent\Contracts\Container\Container;
 
 class CallQueuedHandler
 {
     /**
      * The container instance.
      *
-     * @var \Illuminate\Contracts\Container\Container
+     * @var \Vinelab\NeoEloquent\Contracts\Container\Container
      */
     protected $container;
 
     /**
      * Create a new job instance.
      *
-     * @param  \Illuminate\Contracts\Container\Container  $container
+     * @param  \Vinelab\NeoEloquent\Contracts\Container\Container  $container
      * @return void
      */
     public function __construct(Container $container)
@@ -28,7 +28,7 @@ class CallQueuedHandler
     /**
      * Handle the queued job.
      *
-     * @param  \Illuminate\Contracts\Queue\Job  $job
+     * @param  \Vinelab\NeoEloquent\Contracts\Queue\Job  $job
      * @param  array  $data
      * @return void
      */
@@ -50,7 +50,7 @@ class CallQueuedHandler
     /**
      * Set the job instance of the given class if necessary.
      *
-     * @param  \Illuminate\Contracts\Queue\Job  $job
+     * @param  \Vinelab\NeoEloquent\Contracts\Queue\Job  $job
      * @param  mixed  $instance
      * @return mixed
      */
