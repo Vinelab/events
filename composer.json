@@ -1,6 +1,6 @@
 {
-    "name": "illuminate/events",
-    "description": "The Illuminate Events package.",
+    "name": "vinelab/neoeloquent-events",
+    "description": "Fork of the illuminate/events package to be used with NeoEloquent.",
     "license": "MIT",
     "homepage": "http://laravel.com",
     "support": {
@@ -11,6 +11,10 @@
         {
             "name": "Taylor Otwell",
             "email": "taylorotwell@gmail.com"
+        },
+        {
+          "name": "Abed Halawi",
+          "email": "abed.halawi@vinelab.com"
         }
     ],
     "require": {
@@ -21,7 +25,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Illuminate\\Events\\": ""
+            "Vinelab\\NeoEloquent\\Events\\": ""
         }
     },
     "extra": {

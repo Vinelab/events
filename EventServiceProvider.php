@@ -1,8 +1,8 @@
 <?php
 
-namespace Illuminate\Events;
+namespace Vinelab\NeoEloquent\Events;
 
-use Illuminate\Support\ServiceProvider;
+use Vinelab\NeoEloquent\Support\ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
 {

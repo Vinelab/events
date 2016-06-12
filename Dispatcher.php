@@ -1,22 +1,22 @@
 <?php
 
-namespace Illuminate\Events;
+namespace Vinelab\NeoEloquent\Events;
 
 use Exception;
 use ReflectionClass;
-use Illuminate\Support\Str;
-use Illuminate\Container\Container;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
-use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
-use Illuminate\Contracts\Container\Container as ContainerContract;
+use Vinelab\NeoEloquent\Support\Str;
+use Vinelab\NeoEloquent\Container\Container;
+use Vinelab\NeoEloquent\Contracts\Broadcasting\ShouldBroadcast;
+use Vinelab\NeoEloquent\Contracts\Broadcasting\ShouldBroadcastNow;
+use Vinelab\NeoEloquent\Contracts\Events\Dispatcher as DispatcherContract;
+use Vinelab\NeoEloquent\Contracts\Container\Container as ContainerContract;
 
 class Dispatcher implements DispatcherContract
 {
     /**
      * The IoC container instance.
      *
-     * @var \Illuminate\Contracts\Container\Container
+     * @var \Vinelab\NeoEloquent\Contracts\Container\Container
      */
     protected $container;
 
@@ -58,7 +58,7 @@ class Dispatcher implements DispatcherContract
     /**
      * Create a new event dispatcher instance.
      *
-     * @param  \Illuminate\Contracts\Container\Container|null  $container
+     * @param  \Vinelab\NeoEloquent\Contracts\Container\Container|null  $container
      * @return void
      */
     public function __construct(ContainerContract $container = null)
@@ -247,7 +247,7 @@ class Dispatcher implements DispatcherContract
     /**
      * Broadcast the given event class.
      *
-     * @param  \Illuminate\Contracts\Broadcasting\ShouldBroadcast  $event
+     * @param  \Vinelab\NeoEloquent\Contracts\Broadcasting\ShouldBroadcast  $event
      * @return void
      */
     protected function broadcastEvent($event)
@@ -257,7 +257,7 @@ class Dispatcher implements DispatcherContract
 
             $queue = method_exists($event, 'onQueue') ? $event->onQueue() : null;
 
-            $this->resolveQueue()->connection($connection)->pushOn($queue, 'Illuminate\Broadcasting\BroadcastEvent', [
+            $this->resolveQueue()->connection($connection)->pushOn($queue, 'Vinelab\NeoEloquent\Broadcasting\BroadcastEvent', [
                 'event' => serialize(clone $event),
             ]);
         }
@@ -353,7 +353,7 @@ class Dispatcher implements DispatcherContract
      * Create the class based event callable.
      *
      * @param  string  $listener
-     * @param  \Illuminate\Container\Container  $container
+     * @param  \Vinelab\NeoEloquent\Container\Container  $container
      * @return callable
      */
     protected function createClassCallable($listener, $container)
@@ -390,7 +390,7 @@ class Dispatcher implements DispatcherContract
     {
         try {
             return (new ReflectionClass($class))->implementsInterface(
-                'Illuminate\Contracts\Queue\ShouldQueue'
+                'Vinelab\NeoEloquent\Contracts\Queue\ShouldQueue'
             );
         } catch (Exception $e) {
             return false;
@@ -412,7 +412,7 @@ class Dispatcher implements DispatcherContract
             if (method_exists($class, 'queue')) {
                 $this->callQueueMethodOnHandler($class, $method, $arguments);
             } else {
-                $this->resolveQueue()->push('Illuminate\Events\CallQueuedHandler@call', [
+                $this->resolveQueue()->push('Vinelab\NeoEloquent\Events\CallQueuedHandler@call', [
                     'class' => $class, 'method' => $method, 'data' => serialize($arguments),
                 ]);
             }
@@ -444,7 +444,7 @@ class Dispatcher implements DispatcherContract
     {
         $handler = (new ReflectionClass($class))->newInstanceWithoutConstructor();
 
-        $handler->queue($this->resolveQueue(), 'Illuminate\Events\CallQueuedHandler@call', [
+        $handler->queue($this->resolveQueue(), 'Vinelab\NeoEloquent\Events\CallQueuedHandler@call', [
             'class' => $class, 'method' => $method, 'data' => serialize($arguments),
         ]);
     }
@@ -481,7 +481,7 @@ class Dispatcher implements DispatcherContract
     /**
      * Get the queue implementation from the resolver.
      *
-     * @return \Illuminate\Contracts\Queue\Queue
+     * @return \Vinelab\NeoEloquent\Contracts\Queue\Queue
      */
     protected function resolveQueue()
     {
